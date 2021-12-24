@@ -1,0 +1,331 @@
+# there are four screens
+windowManager:
+    loginWindow:
+    signupWindow:
+    logDataWindow:
+    dataframeWindow:
+    testDataframeWindow:
+    mapWindow:
+    photoGallery:
+# GUI for the login window
+<loginWindow>:
+    email : email
+    pwd : pwd
+    canvas.before:
+        Color:
+            rgb: .6, .6, .6
+        Rectangle:
+            size: self.size
+            source: 'data/blue_bg.jpeg'
+
+    FloatLayout:
+        size: root.width, root.height
+        canvas:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: (root.width/4, 45)
+                size: (root.width*.5, root.height*.9)
+           
+        AsyncImage:
+            source: 'https://www.virtualspacellc.com/vslogo.png'
+            pos_hint : {"x":0.02, "top":1.4}
+        Label:
+            text : "EMAIL: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x":0.2, "top":0.8}
+            color: 0, 0, 0
+        TextInput:
+            id : email
+            multiline :False
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.4, "top" : 0.8}
+        Label:
+            text : "PASSWORD: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.23, "top" : 0.6}
+            color: 0, 0, 0
+        TextInput:
+            id : pwd
+            multiline :False
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.4, "top" : 0.6}
+        Button:
+            text : "LOGIN"
+            size_hint : 0.4, 0.1
+            pos_hint : {"x" : 0.3, "top" : 0.4}
+            background_color: 0, 0, 1, 1
+            on_release: 
+                root.validate()
+                root.manager.transition.direction = "up"
+        Button:
+            text : "Create an account"
+            size_hint : 0.4, 0.1
+            pos_hint : {"x" : 0.3, "top" : 0.2}
+            background_color: 0, 0, 1, 1
+            on_release: 
+                app.root.current = 'signup'
+                root.manager.transition.direction = "left"
+        Button
+            text: "test"
+            size_hint : 0.05, 0.1
+            pos_hint : {"x" : 0.1, "top" : 0.2}
+            on_release: root.showPopup()
+            Image:
+                source: 'data/t.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+                size: (65, 60)
+                
+        
+  
+# GUI for the signup window
+<signupWindow>:
+    name2 : name2
+    email : email
+    pwd : pwd
+    FloatLayout:
+        AsyncImage:
+            source: 'https://www.virtualspacellc.com/vslogo.png'
+            pos_hint : {"x":0.1, "top":1.4}
+        Label:
+            text : "NAME: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x":0.25, "top":0.8}
+        TextInput:
+            id : name2
+            multiline : False
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.45, "top" : 0.8}
+        Label:
+            text : "EMAIL: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.25, "top" : 0.6}
+        TextInput:
+            id : email
+            multiline : False
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.45, "top" : 0.6}
+        Label:
+            text : "PASSWORD: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.25, "top" : 0.4}
+        TextInput:
+            id : pwd
+            multiline : False
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.45, "top" : 0.4}
+        Button:
+            text : "SUBMIT"
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.39, "top" : 0.18}
+            on_press :
+                root.signupbtn()
+                root.manager.transition.direction = "right"
+  
+# GUI to show validation result
+<logDataWindow>:
+    FloatLayout:
+        canvas.before: 
+            Rectangle:
+                size: (275, 275)
+                pos: (-435, 50)
+            Color:
+                rgb: .8, .8, .2
+        Widget:
+            Scatter:
+                id: scatter
+                size_hint: None, None
+                size: image.size
+
+                Image:
+                    id: image
+                    source: 'data/bg.jpg'
+                    size: self.texture_size
+                           
+                    Label: 
+                        pos: (-130, 35)
+                        size: self.parent.size
+                        text: "PRJ - 6 -001-12 \n ######### \n 1444 E 6th \n Phoenix, AZ \n ######### \n 2200 SQFT Lane \n Single Family \n 3400 SQFT Total"
+                        halign: 'center'
+
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, .8
+                            Rectangle:
+                                pos: (300, 310)
+                                size: (185, 150)
+
+                    Label: 
+                        pos: (-315, -300)
+                        size: self.parent.size
+                        text: "Virtual Space LLC Copyright 2021"
+
+                    AsyncImage:
+                        source: 'https://www.virtualspacellc.com/vslogo.png'
+                        size: (50, 50)
+                        pos: (25, 25)
+                    
+                    Button
+                        text: "test"
+                        size: (135, 135)
+                        pos: (50, 110)
+                        color: 1, 1, 1, .1
+                        on_release: root.runMap()
+                        Image:
+                            source: 'data/icons/map_main.png'
+                            size: (200, 200)
+                            pos: (20, 80)
+                            color: 1, 1, 1, 1
+
+                    Button
+                        text: "test"
+                        size: (135, 135)
+                        pos: (300, 110)
+                        color: 1, 1, 1, .1
+                        on_release: root.runData()
+                        Image:
+                            source: 'data/icons/list.png'
+                            pos: (275, 80)
+                            size: (200, 200)
+
+                    Button
+                        text: "test"
+                        size: (135, 135)
+                        pos: (600, 110)
+                        color: 1, 1, 1, .1
+                        on_release: root.showGallery()
+                        Image:
+                            source: 'data/icons/photoGallery.png'
+                            size: (200, 200)
+                            pos: (560, 80)
+                            color: 1, 1, 1, 1
+                    
+#GUI for displaying data
+<testDataframeWindow>:
+    BoxLayout:
+        size_hint_y: .1
+        pos_hint: {"top":1}
+
+        canvas.before:
+            Color:
+                rgb: .6, .6, .6
+            Rectangle:
+                size: self.size
+                source: 'data/background.png'
+
+        ActionBar:
+            ActionView:
+                id: av
+                ActionPrevious:
+                    title: 'Virtual Space'
+                    app_icon: 'data/vslogo.png'
+                    on_release: app.go_back()
+
+    BoxLayout:
+        size_hint_y: .7
+        pos_hint: {"top":.85}
+        id: addGraph
+
+<dataframeWindow>:
+    BoxLayout:
+        size_hint_y: .1
+        pos_hint: {"top":1}
+
+        canvas.before:
+            Color:
+                rgb: .6, .6, .6
+            Rectangle:
+                size: self.size
+                source: 'data/background.png'
+
+        ActionBar:
+            ActionView:
+                id: av
+                ActionPrevious:
+                    title: 'Virtual Space'
+                    app_icon: 'data/vslogo.png'
+                    on_release: app.go_back()
+
+    BoxLayout:
+        size_hint_y: .7
+        pos_hint: {"top":.85}
+        id: addGraph
+        
+# GUI for pop up window
+<P>:
+    Label:
+        text : "Please enter valid information"
+        size_hint : 0.2, 0.1
+        pos_hint : {"x" : 0.3, "top" : 0.8}
+
+<Pt>:
+    Label:
+        text : "Contact tech support"
+        size_hint : 0.2, 0.1
+        pos_hint : {"x" : 0.4, "top" : 0.8}
+    Label:
+        text : "at (123) 456-7890"
+        size_hint : 0.2, 0.1
+        pos_hint : {"x" : 0.4, "top" : 0.7}
+
+<mapWindow>:
+    BoxLayout:
+        size_hint_y: .1
+        pos_hint: {"top":1}
+
+        canvas.before:
+            Color:
+                rgb: .6, .6, .6
+            Rectangle:
+                size: self.size
+                source: 'data/background.png'
+
+        ActionBar:
+            ActionView:
+                id: av
+                ActionPrevious:
+                    title: 'Virtual Space'
+                    app_icon: 'data/vslogo.png'
+                    on_release: app.go_back()
+
+    BoxLayout:
+        size_hint_y: .9
+        id: box
+
+<photoGallery>:
+    name: 'Carousel'
+
+    BoxLayout:
+        size_hint_y: .1
+        pos_hint: {"top":1}
+
+        ActionBar:
+            ActionView:
+                id: av
+                ActionPrevious:
+                    title: 'Virtual Space'
+                    app_icon: 'data/vslogo.png'
+                    on_release: app.go_back()
+    
+    BoxLayout:
+        size_hint_y: .9
+        id: box
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'data/background.png'
+
+        Carousel:
+            id: carousel
+            loop: 'True'
+
+            Image:
+                source: 'data/photoGallery/1.jpg'
+            Image:
+                source: 'data/photoGallery/2.jpg'
+            Image:
+                source: 'data/photoGallery/3.jpg'

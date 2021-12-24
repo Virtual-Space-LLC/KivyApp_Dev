@@ -1,0 +1,59 @@
+ShowcaseScreen:
+    name: 'Dash'
+
+    FloatLayout:
+        canvas.before: 
+            Rectangle:
+                size: (275, 275)
+                pos: (-435, 50)
+            Color:
+                rgb: .8, .8, .2
+        Widget:
+            Scatter:
+                id: scatter
+                size_hint: None, None
+                size: image.size
+
+                Image:
+                    id: image
+                    source: 'data/bg.jpg'
+                    size: self.texture_size
+
+                    Label: 
+                        pos: (-410, 50)
+                        size: self.parent.size
+                        text: "PRJ - 6 -001-12 \n ######### \n 1444 E 6th \n Phoenix, AZ \n ######### \n 2200 SQFT Lane \n Single Family \n 3400 SQFT Total"
+                        halign: 'center'
+                        bcolor: .8, .8, .2, 1
+
+                    Label: 
+                        pos: (-315, -300)
+                        size: self.parent.size
+                        text: "Virtual Space LLC Copyright 2021"
+
+                    AsyncImage:
+                        source: 'https://www.virtualspacellc.com/vslogo.png'
+                        size: (50, 50)
+                        pos: (25, 25)
+
+                    Image:
+                        source: app.bottom_right_image
+                        size: (200, 200)
+                        pos: (550, 110)
+                        color: 1, 1, 1, .7
+                        on_touch_down: app.showData()
+                    
+                    Image:
+                        source: app.top_right_image
+                        size: (200, 200)
+                        pos: (550, 300)
+                        color: 1, 1, 1, .7
+                        on_touch_down: app.showData()
+
+                    Image:
+                        source: app.bottom_left_image
+                        size: (200, 200)
+                        pos: (25, 100)
+                        color: 1, 1, 1, .7
+                        on_touch_down: app.go_next_screen()
+
