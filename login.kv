@@ -47,6 +47,7 @@ windowManager:
             color: 0, 0, 0
         TextInput:
             id : pwd
+            password: True
             multiline :False
             size_hint : 0.3, 0.1
             pos_hint : {"x" : 0.4, "top" : 0.6}
@@ -84,41 +85,61 @@ windowManager:
     name2 : name2
     email : email
     pwd : pwd
+    canvas.before:
+        Color:
+            rgb: .6, .6, .6
+        Rectangle:
+            size: self.size
+            source: 'data/blue_bg.jpeg'
+
     FloatLayout:
+        size: root.width, root.height
+        canvas:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: (root.width/4, 45)
+                size: (root.width*.5, root.height*.9)
+           
         AsyncImage:
             source: 'https://www.virtualspacellc.com/vslogo.png'
-            pos_hint : {"x":0.1, "top":1.4}
+            pos_hint : {"x":0.02, "top":1.4}
         Label:
             text : "NAME: "
+            color: 0, 0, 0
             size_hint : 0.2, 0.1
-            pos_hint : {"x":0.25, "top":0.8}
+            pos_hint : {"x":0.2, "top":0.8}
         TextInput:
             id : name2
             multiline : False
             size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.45, "top" : 0.8}
+            pos_hint : {"x" : 0.4, "top" : 0.8}
         Label:
             text : "EMAIL: "
             size_hint : 0.2, 0.1
-            pos_hint : {"x" : 0.25, "top" : 0.6}
+            pos_hint : {"x":0.2, "top":0.6}
+            color: 0, 0, 0
         TextInput:
             id : email
-            multiline : False
+            multiline :False
             size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.45, "top" : 0.6}
+            pos_hint : {"x" : 0.4, "top" : 0.6}
         Label:
             text : "PASSWORD: "
             size_hint : 0.2, 0.1
-            pos_hint : {"x" : 0.25, "top" : 0.4}
+            pos_hint : {"x" : 0.23, "top" : 0.4}
+            color: 0, 0, 0
         TextInput:
             id : pwd
-            multiline : False
+            password: True
+            multiline :False
             size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.45, "top" : 0.4}
+            pos_hint : {"x" : 0.4, "top" : 0.4}
         Button:
             text : "SUBMIT"
             size_hint : 0.3, 0.1
             pos_hint : {"x" : 0.39, "top" : 0.18}
+            background_color: 0, 0, 1, 1
             on_press :
                 root.signupbtn()
                 root.manager.transition.direction = "right"
@@ -181,18 +202,18 @@ windowManager:
                     Button
                         text: "test"
                         size: (135, 135)
-                        pos: (300, 110)
+                        pos: (315, 110)
                         color: 1, 1, 1, .1
                         on_release: root.runData()
                         Image:
                             source: 'data/icons/list.png'
-                            pos: (275, 80)
+                            pos: (285, 80)
                             size: (200, 200)
 
                     Button
                         text: "test"
                         size: (135, 135)
-                        pos: (600, 110)
+                        pos: (600, 105)
                         color: 1, 1, 1, .1
                         on_release: root.showGallery()
                         Image:
